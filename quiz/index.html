@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1" />
+        <title>RME | QUIZ</title>
+        <link rel="stylesheet" type="text/css" href="../css/grid.css" />
+        <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    <body>
+
+        <div class="modal fade" id="video-verification" role="dialog" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">Video Verification</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Tech Test</strong>: 20s | I Have More Than 10 Pounds To Lose <button onclick="techTest(24, 'I Have More Than 10 Pounds To Lose')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 20s | I Want To Lose That Last 5-10 Pounds <button onclick="techTest(24, 'I Want To Lose That Last 5-10 Pounds')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 20s | I Want To Get More Sculpted and Toned <button onclick="techTest(24, 'I Want To Get More Sculpted and Toned')">Click Me</button></p>
+                        <br><br>
+                        <p><strong>Tech Test</strong>: 30s | I Have More Than 10 Pounds To Lose <button onclick="techTest(34, 'I Have More Than 10 Pounds To Lose')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 30s | I Want To Lose That Last 5-10 Pounds <button onclick="techTest(34, 'I Want To Lose That Last 5-10 Pounds')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 30s | I Want To Get More Sculpted and Toned <button onclick="techTest(34, 'I Want To Get More Sculpted and Toned')">Click Me</button></p>
+                        <br><br>
+                        <p><strong>Tech Test</strong>: 40s | I Have More Than 10 Pounds To Lose <button onclick="techTest(44, 'I Have More Than 10 Pounds To Lose')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 40s | I Want To Lose That Last 5-10 Pounds <button onclick="techTest(44, 'I Want To Lose That Last 5-10 Pounds')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 40s | I Want To Get More Sculpted and Toned <button onclick="techTest(44, 'I Want To Get More Sculpted and Toned')">Click Me</button></p>
+                        <br><br>
+                        <p><strong>Tech Test</strong>: 50s and up | I Have More Than 10 Pounds To Lose <button onclick="techTest(54, 'I Have More Than 10 Pounds To Lose')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 50s and up | I Want To Lose That Last 5-10 Pounds <button onclick="techTest(54, 'I Want To Lose That Last 5-10 Pounds')">Click Me</button></p>
+                        <p><strong>Tech Test</strong>: 50s and up | I Want To Get More Sculpted and Toned <button onclick="techTest(54, 'I Want To Get More Sculpted and Toned')">Click Me</button></p>
+                    </div>
+                    <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Close</button></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="overlay">
+            <img alt='Processing' class="rotate overlay__processing" src="image/processing.png?auto=format&w=90&h=90">
+        </div>
+        
+        <!-- BANNER START -->
+        <div class="container-fluid container-fluid-height banner">
+            <div class="rad-content">
+                <p class="logo">
+                    <img src="image/radme-logo-alt.png?auto=format&w=200&h=46" alt="Radiant Me" class="img-responsive">
+                </p>
+        
+                <div class="row">
+                    <div class="hidden-xs col-sm-6">
+        
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <h1 class="heading-001 center-block text-grey">Find Out How Much Weight<br class="hidden-sm hidden-md"> You Can Lose On The <br class="hidden-sm hidden-md"><span class="heading-001-alt">14-Day Metabolism Reset</span></h1>
+        
+                        <div class="text-center fade-in-button">
+                            <a href="#quiz">
+                                <button class="get-started-button">Get Started<br>
+                                    <img src="image/white-arrows-dwn.png?auto=format&w=15&h=16" alt="Arrows" class="dwn-arrows">
+                                </button>
+                            </a>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BANNER END -->
+        
+        <div class="desktop-logo">
+            <img src="image/radme-logo-alt.png?auto=format&w=100&h=23" alt="Radiant Me" class="img-responsive center-block">
+        </div>
+        <section class="quiz" id="quiz">
+        
+            <div class="container">
+                <div class="quiz__controls">
+                    <div class="quiz__backward quiz__backward--hide">
+                        <img src="image/forward-arrow.png?auto=format" alt="Back" class="back">
+                        <span class="back-wrapper"> Back</span>
+                    </div>
+        
+                    <img src="image/radme-logo-alt.png?auto=format&w=100&h=23" alt="Radiant Me" class="mobile-logo">
+                    <!--             <div class="quiz__forward">
+                                    NEXT QUESTION
+                                </div>
+                                <div class="quiz__skip">
+                                    I'm not sure, skip.
+                                </div> -->
+                </div>
+        
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <span class="progress-bar__progress">
+                        <span class="steps__quiz-step">1</span>/<span class="steps__quiz-length">14</span>
+                    </span>
+                </div>
+        
+                <div class="quiz__container">
+                    <div class="quiz__question"></div>
+                    <div class="quiz__questions">
+        
+                        <div class="quiz__directions" style="display: none;">
+                            <span class="quiz__directions-title"></span> <span class="quiz__directions-text"></span>
+                        </div>
+        
+                        <div class="quiz__answers"></div>
+                    </div>
+                </div>
+        
+            </div>
+        
+        </section>
+        
+        <section class="results__container">
+                <div class="header-section">
+                    <div class="container">
+                        <img src="image/logo.png?fit=max&auto=format" class="header__logo" alt="logo" width="231" height="46">
+                    </div>
+                </div>
+                
+                <div class="main-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                
+                                <div class="main-section__box">
+                                
+                                    <div class="resultBox">
+                                        <p class="heading">Step 12: Your Results</p>
+                                        
+                                        <div class="resultBox__row">
+                                            <div class="resultBox__col">                                        
+                                                <div class="video__container">
+        
+                                                </div>                                        
+                                            </div>
+                                            <div class="resultBox__col">
+                                                <div class="resultBox__col--graph">
+                                                    <img class="graph__img" src="#" alt="" width="484" height="409">                                        
+                                                </div>
+        
+                                                <div class="resultBox__col--congratulations">
+                                                    <p class="congratulations_text"><span><strong>Congratulations</strong>!</span> Based on your answers, you could be down to <strong class="afterWeight"></strong><strong> pounds</strong> by <strong class="afterDate"></strong> with the 14-Day Metabolism Reset. You’re a <strong>96.8%</strong> fit for success, so please watch the short video to learn how it works!</p>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        
+                                    </div>
+                                    
+        
+                                    <div class="padding30">
+                                        <p class="key__heading"><span>Your Key Numbers</span></p>
+                                            
+                                        <div class="keyBox">
+                                            <div class="keyBox__col keyBox__col--backg1">
+                                                <h3>Age<br><span class="age"></span></h3> 
+                                            </div>
+                                            <div class="keyBox__col keyBox__col--backg2">
+                                                <h3>Weight<br><span class="currentWeight"></span></h3> 
+                                            </div>
+                                            <div class="keyBox__col keyBox__col--backg3">
+                                                <h3>Appx. RMR<br><span class="rmr"></span></h3>  
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="hidden-content-part" style="display:none; float: left; width: 100%;">    
+                                        <div class="metabolismBox" id="purchase">
+                                            <p class="heading hidden-xs"><span class="underline">Your 14-Day Metabolism Reset</span></p>
+                                            <p class="heading visible-xs"><span class="underline">Your  14-Day</span> <br class="visible-xs"><span class="underline">Metabolism Reset</span></p>
+                                            
+                                            <img src="image/metabolism-image.png?fit=max&auto=format" class="metabolism__image" alt="" width="900" height="682">
+        <!--                                     <div class="metabolismBox__reviews">
+                                                <img src="image/review-image.jpg?fit=max&auto=format" alt="" width="180" height="180">
+                                                <p class="review_text"><strong>Meet your <br class="visible-xs">success coach - Lindsay</strong><br>As part of your 14-Day Reset, you’re welcome to schedule a free call with Senior Coach Lindsay, to answer your questions, help you succeed, and make sure you get the best results possible!</p>    
+                                            </div> -->
+                                        </div>
+                                        
+                                        <div class="productBox">
+                                            <div class="productBox__header">
+                                                <h3>Here’s What’s Included In Your<br>14-Day Reset:</h3>    
+                                            </div>  
+                                            
+                                            <div class="productBox__row">
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image1.png?fit=max&auto=format" alt="" width="243" height="144">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading">14-Days of Follow-Along Workouts</h3>
+                                                        <p class="product__text">Workout with Marina and her Mom for <strong>14 days of fat-burning</strong> and lean-muscle building.</p>
+                                                        <div class="priceBox">Value : <strong>$700</strong></div>   
+                                                    </div>
+                                                </div>  
+                                                
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image2.png?fit=max&auto=format" alt="" width="243" height="235">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading">14-Day Meal Plan</h3>
+                                                        <p class="product__text">Energize and strengthen your body with 14 days of quick-prep meals (for you and your family!)</p>
+                                                        <div class="priceBox">Value : <strong>$200</strong></div>  
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image3.png?fit=max&auto=format" alt="" width="243" height="144">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading">Private Membership Access</h3>
+                                                        <p class="product__text">Free online access to your 14-Day Reset program. Start your reset just minutes from now!</p>
+                                                            
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image4.png?fit=max&auto=format" alt="" width="243" height="144">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading">The Vegan Extension</h3>
+                                                        <p class="product__text">Substitute any of your 14-Day meals with vegan alternatives.</p>
+                                                        <div class="priceBox"><span class="red_strik">$59</span> <strong class="red_color">FREE</strong></div>  
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col border_none">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image5.png?fit=max&auto=format" alt="" width="243" height="220">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading">Live Onboarding Call</h3>
+                                                        <p class="product__text">At your convenience, you’re welcome to schedule a live, 1:1 call with Marina’s head coach Lindsay to answer your questions and set you up for success.</p>
+                                                        <div class="priceBox"><span class="red_strik">$199</span> <strong class="red_color">FREE</strong></div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="productBox__header productBox__header--vs">
+                                                <h3>Your Free Gifts - <span class="yellow_underline"><span class="today-date"></span> Only</span></h3>   
+                                            </div>  
+                                            
+                                            <div class="productBox__row productBox__row--tb">
+                                                    
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image6.png?fit=max&auto=format" alt="" width="243" height="230">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading product__heading--green">12 Ways To Lose Weight Without Diet or Exercise</h3>
+                                                        <p class="product__text">12 simple, "autopilot" habits to lose weight, and keep it off by habit.</p>
+                                                        <div class="priceBox"><span class="red_strik">$47</span> <strong class="red_color">FREE</strong></div>  
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image7.png?fit=max&auto=format" alt="" width="243" height="233">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading product__heading--green">Beautiful Skin From Within</h3>
+                                                        <p class="product__text">The doctor-designed guide to improve your skin’s firmness and tone.</p>
+                                                        <div class="priceBox"><span class="red_strik">$27</span> <strong class="red_color">FREE</strong></div>  
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image8.png?fit=max&auto=format" alt="" width="243" height="211">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading product__heading--green">The Foam Rolling Guide</h3>
+                                                        <p class="product__text">Unlock hidden trigger points for deep pain relief.</p>
+                                                        <div class="priceBox"><span class="red_strik">$23.50</span> <strong class="red_color">FREE</strong></div>   
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="productBox__row_col border_none">
+                                                    <div class="row_col_left">
+                                                        <img src="image/prod-image9.png?fit=max&auto=format" alt="" width="243" height="239">
+                                                    </div>
+                                                    <div class="row_col_right">
+                                                        <h3 class="product__heading product__heading--green">The Stretching Guide</h3>
+                                                        <p class="product__text">Reduce years of soreness and pain, and unlock incredible mobility.</p>
+                                                        <div class="priceBox"><span class="red_strik">$23.50</span> <strong class="red_color">FREE</strong></div>   
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                                
+                                        </div>
+                                        
+                                        <div class="summaryBox">
+                                            <div class="summaryBox__row">
+                                                <p class="order_text">Total Value Of Your Bundle:</p>
+                                                <p class="order_price order_price--red"><span class="pink_strik">$1,279</span></p>
+                                            </div>
+                                            <div class="summaryBox__row">
+                                                <p class="order_text">Special Discount:</p>
+                                                <p class="order_price order_price--green">96%</p>
+                                            </div>
+                                            <div class="summaryBox__row">
+                                                <p class="order_text">Your Price Today:</p>
+                                                <p class="order_price">See Below</p>
+                                            </div>                  
+                                        </div>
+                                        
+                                        <img src="image/stephanie-comments.jpg?fit=max&auto=format" class="stephanie__comments" alt="" width="569" height="997">
+                                        
+                                        <div class="faceboox__text"><img src="image/facebook-image.png?fit=max&auto=format" alt="" width="60" height="60"> <p>Backed by our <strong>18,576</strong> Facebook community</p></div> 
+                                        
+                                        
+                                        <div class="packageBox">
+                                            <div class="packageBox__strip">
+                                                <h3>The #1 Selling Course</h3>
+                                            </div>
+                                            <p class="packageBox__heading">Your Personal 14-Day Metabolism Reset</p>
+                                            <p class="packageBox__bundle">Total Bundle Value: <span>$1,279</span></p>
+                                            <p class="packageBox__price-txt upper">Your Discounted Price</p>
+                                            <p class="packageBox__price">$49.97</p>
+                                            <img src="image/metabolism-image.png?fit=max&auto=format" class="metabolism__image" alt="" width="900" height="682">
+                                            <!-- <p class="packageBox__discount-txt">Special Discount Price</p> -->
+                                            <p class="packageBox__price-txt"><strong class="extra_bold">FREE Instant Delivery +<br><span class="red_underline">1 Year of Complete Purchase Protection</span></strong></p>
+                                            <p class="packageBox__gift-txt">+ $121 of Free Gifts Only Today!</p>
+                                            <a href="#" class="packageBox__btn knd-ic-btn">Add To Cart Now<img src="image/package-btn-arrw.png?fit=max&auto=format" alt="" width="32" height="16"></a>
+                                            <img src="image/pay-card.png?fit=max&auto=format" alt="" class="pay__card" width="400" height="57">
+                                            <img src="image/package-guarnty-seal.png?fit=max&auto=format" alt="" class="package__guarnty-seal" width="520" height="114">
+                                            <div class="discount__strip">
+                                                <p>Your Bundle Discount Expires In… <span id="stopwatch">29:59</span></p>
+                                                
+                                                <div class="progress_bar">
+                                                    <div id="analyzeProgress" class="progress-amt" style="width:80%;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="hidden-content-part" style="display:none; float: left; width: 100%;">    
+                                    <p class="heading heading--50">Customer Feedback</p>
+                                        
+                                    <div class="testiBlock">
+                                        <div class="testiBlock__row">
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img1.jpg?fit=max&auto=format" alt="" width="466" height="741">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img2.jpg?fit=max&auto=format" alt="" width="474" height="380">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img3.jpg?fit=max&auto=format" alt="" width="449" height="685">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img4.jpg?fit=max&auto=format" alt="" width="453" height="610">
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="testiBlock__row">
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img5.jpg?fit=max&auto=format" alt="" width="447" height="428">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img6.jpg?fit=max&auto=format" alt="" width="465" height="644">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img7.jpg?fit=max&auto=format" alt="" width="449" height="351">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img8.jpg?fit=max&auto=format" alt="" width="450" height="255">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img9.jpg?fit=max&auto=format" alt="" width="448" height="315">
+                                            </div>
+                                            
+                                            <div class="testiBlock__row-col">
+                                                <img src="image/testi-img10.jpg?fit=max&auto=format" alt="" width="454" height="248">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="padding30">
+                                        <div class="guarantee__box">
+                                            <img src="image/guranty-seal.png?fit=max&auto=format" class="guranty__seal" alt="" width="259" height="194">
+                                            <p class="heading hidden-xs"><span class="underline">1-Year Of Purchase Protection</span></p>
+                                            <p class="heading visible-xs"><span class="underline">1-Year Of Purchase</span> <br class="visible-xs"><span class="underline">Protection</span></p>
+                                            <p class="gurantee__text">Your 14-Day Metabolism Reset order comes with a full year of complete purchase protection. If you’re not happy with the course for any reason, you can easily get a full, no-questions-asked refund. Just email us at <a href="mailto:mail@radiant.me"><strong>mail@radiant.me</strong></a>, or call us at <a href="tel:18443292473"><strong>1-844-329-2473</strong></a>. Friendly Customer Happiness members are available 24 hours a day to help out.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="packageBox--buttonbox">
+                                        <a href="#" class="packageBox__btn knd-ic-btn">Add To Cart Now<img src="image/package-btn-arrw.png?fit=max&auto=format" alt="" width="32" height="16"></a>
+                                        <img src="image/pay-card.png?fit=max&auto=format" alt="" class="pay__card" width="400" height="57">
+                                        <img src="image/package-guarnty-seal.png?fit=max&auto=format" alt="" class="package__guarnty-seal" width="520" height="114">
+                                    </div>
+                                    
+                                    <div class="discount__strip">
+                                        <p>Your Bundle Discount Expires In… <span id="stopwatch2">29:59</span></p>
+                                        
+                                        <div class="progress_bar">
+                                            <div id="analyzeProgress" class="progress-amt" style="width:80%;"></div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        
+        <!-- FOOTER START -->
+        <footer class="footer">
+            <div class="container" style="width:100%;">
+                <div class="row flex-row footer__bottom-bar_content">
+                    <div class="col-sm-12 col-md-8">
+                        <p class="visible-xs visible-sm">
+                            <img src="image/radme-logo-alt.png?auto=format&w=100&h=23" alt="Radiant Me" class="img-responsive center-block" style="max-width:100px;">
+                        </p>
+                        <p class="footer-bar-copy">&copy; RADIANT ME&nbsp;&nbsp; <span class="footer_spacer"></span>|<span class="footer_spacer"></span><a href="#privacy-policy" data-toggle="modal" data-target="#privacy-policy">PRIVACY POLICY</a> <span class="footer_spacer"></span>|<span class="footer_spacer"></span> <a href="#contact-us" data-toggle="modal" data-target="#contact-us">CONTACT US</a></p>
+                    </div>
+        
+                    <div class="col-sm-12 col-md-4">
+                        <p class="footer-fineprint">*Participants have reported losing up to 14 pounds. Results will vary based on starting point, and adherence to plan. Most will see 1-2 pounds of weight loss per week.
+                        </p>
+                    </div>
+                </div>
+        
+            </div>
+        </footer>
+        <!-- FOOTER END -->        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </body>
+</html>
