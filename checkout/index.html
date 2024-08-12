@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1" />
+        <title>Checkout Now</title>
+        <meta name="description" content="Checkout Now">
+        <meta name="keywords" content="metabolism, marina santos fit, radiant me">
+        <link rel="icon" href="https://asset.the14dayreset.us/day-0/radiant-me-favico.png" sizes="32x32">
+        <link rel="stylesheet" type="text/css" href="css/grid.css" />
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+        <script src="//geoip-js.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script>
+
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuoTzg90kkt3nW0dHy3xK-DgtAMkG_yeE&libraries=places"></script>
+
+        <script>
+            const countryCodes = [
+            'US', // United States
+            'CA', // Canada
+            'AU', // Australia
+            'NZ', // New Zealand
+            'SE', // Sweden
+            'IE', // Ireland
+            'ES', // Spain
+            'DE', // Germany
+            'FR', // France
+            'UK', // United Kingdom
+            'GB', // United Kingdom
+            'ZA', // South Africa
+            'MX', // Mexico
+            'PH', // Philippines
+            'NO' // Norway
+            ]
+
+            console.log(countryCodes)
+
+
+
+            let ipCountry
+
+
+            // Define a function to update the state dropdown options
+            function updateStateDropdown() {
+            // Get the selected value of the country dropdown
+            const selectedCountry = document.querySelector('#country').value
+            const zipLabel        = document.querySelector('#zip')
+
+
+            // Create an array of state options based on the selected country
+            let stateOptions
+            switch (selectedCountry) {
+            case 'SE':
+            zipLabel.placeholder = 'Postal code *'
+
+            stateOptions = [
+            'County *', 'Stockholm', 'Uppsala', 'Sodermanland', 'Ostergotland', 'Jonkoping', 'Kronoberg', 'Kalmar', 'Gotland', 'Blekinge', 'Skane', 'Halland', 'Vastra Gotaland', 'Varmland', 'Orebro', 'Vastmanland', 'Dalarna', 'Gavleborg', 'Vasternorrland', 'Jamtland', 'Vasterbotten', 'Norrbotten'
+            ]
+
+            break
+            case 'IE':
+            zipLabel.placeholder = 'Postal code *'
+            stateOptions         = [
+            'County *', 'Carlow', 'Cavan', 'Clare', 'Cork', 'Donegal', 'Dublin', 'Galway', 'Kerry', 'Kildare', 'Kilkenny', 'Laois', 'Leitrim', 'Limerick', 'Longford', 'Louth', 'Mayo', 'Meath', 'Monaghan', 'Offaly', 'Roscommon', 'Sligo', 'Tipperary', 'Waterford', 'Westmeath', 'Wexford', 'Wicklow'
+            ]
+
+            break
+            case 'ES':
+            zipLabel.placeholder = 'Postal code *'
+            stateOptions         = [
+            'County *', 'A Coruna', 'Alava', 'Albacete', 'Alicante', 'Almeria', 'Asturias Province', 'Avila', 'Badajoz', 'Balears Province', 'Barcelona', 'Burgos', 'Caceres', 'Cadiz', 'Cantabria Province', 'Castellon', 'Ceuta', 'Ciudad Real', 'Cordoba', 'Cuenca', 'Girona', 'Granada', 'Guadalajara', 'Gipuzkoa', 'Huelva', 'Huesca', 'Jaen', 'La Rioja Province', 'Las Palmas', 'Leon', 'Lleida', 'Lugo', 'Madrid Province', 'Malaga', 'Melilla', 'Murcia', 'Navarra', 'Ourense', 'Palencia', 'Pontevedra', 'Salamanca', 'Santa Cruz de Tenerife', 'Segovia', 'Seville', 'Soria', 'Tarragona', 'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Biscay', 'Zamora', 'Zaragoza'
+            ]
+
+            break
+            case 'DE':
+            zipLabel.placeholder = 'Postal code *'
+            stateOptions         = [
+            'State *', 'Baden-Wurttemberg', 'Bavaria', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hesse', 'Lower Saxony', 'Mecklenburg-Vorpommern', 'North Rhine-Westphalia', 'Rhineland-Palatinate', 'Saarland', 'Saxony', 'Saxony-Anhalt', 'Schleswig-Holstein', 'Thuringia'
+            ]
+
+            break
+            case 'FR':
+            zipLabel.placeholder = 'Postal code *'
+            stateOptions         = [
+            'Region *', 'Auvergne-Rhone-Alpes', 'Bourgogne-Franche-Comte', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', 'Provence-Alpes-Cote d\'Azur', 'Guadeloupe', 'Martinique', 'Guyane', 'La Reunion', 'Mayotte'
+            ]
+
+            break
+            case 'NO':
+            zipLabel.placeholder = 'Postal code *'
+            stateOptions         = [
+            'County *', 'Oslo', 'Rogaland', 'More og Romsdal', 'Nordland', 'Viken', 'Innlandet', 'Vestfold og Telemark', 'Agder', 'Vestland', 'Trondelag', 'Troms og Finnmark'
+            ]
+
+            break
+            case 'US':
+            stateOptions = [
+            'State *', 'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+            ]
+
+            zipLabel.placeholder = 'Zip Code *'
+
+            break
+            case 'CA':
+            stateOptions = [
+            'Province *', 'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Yukon'
+            ]
+
+            zipLabel.placeholder = 'Postal code *'
+
+            break
+            case 'AU':
+            stateOptions = [
+            'State/territory *', 'New South Wales', 'Queensland', 'South Australia', 'Tasmania', 'Victoria', 'Western Australia', 'Australian Capital Territory', 'Northern Territory'
+            ]
+
+            zipLabel.placeholder = 'Postcode *'
+
+
+            break
+            case 'NZ':
+            stateOptions = [
+            'Region *', 'Auckland', 'Bay of Plenty', 'Canterbury', 'Chatham Islands', 'Gisborne', 'Hawke\'s Bay', 'Manawatu-Wanganui', 'Marlborough', 'Nelson', 'Northland', 'Otago', 'Southland', 'Taranaki', 'Tasman', 'Waikato', 'Wellington', 'West Coast'
+            ]
+
+            zipLabel.placeholder = 'Postal code *'
+
+            break
+            case 'GB':
+            stateOptions = [
+            'County *',   'Bedfordshire', 'Berkshire', 'Bristol', 'Buckinghamshire', 'Cambridgeshire', 'Cheshire', 'City of London', 'Cornwall', 'Cumbria', 'Derbyshire', 'Devon', 'Dorset', 'Durham', 'East Riding of Yorkshire', 'East Sussex', 'Essex', 'Gloucestershire', 'Greater London', 'Greater Manchester', 'Hampshire', 'Herefordshire', 'Hertfordshire', 'Isle of Wight', 'Kent', 'Lancashire', 'Leicestershire', 'Lincolnshire', 'Merseyside', 'Norfolk', 'North Yorkshire', 'Northamptonshire', 'Northumberland', 'Nottinghamshire', 'Oxfordshire', 'Rutland', 'Shropshire', 'Somerset', 'South Yorkshire', 'Staffordshire', 'Suffolk', 'Surrey', 'Tyne and Wear', 'Warwickshire', 'West Midlands', 'West Sussex', 'West Yorkshire', 'Wiltshire', 'Worcestershire'
+            ]
+
+            zipLabel.placeholder = 'Postcode *'
+
+            break
+            case 'ZA':
+            stateOptions = [
+            'Province *', 'Eastern Cape', 'Free State', 'Gauteng', 'KwaZulu-Natal', 'Limpopo', 'Mpumalanga', 'North West', 'Northern Cape', 'Western Cape'
+            ]
+
+            zipLabel.placeholder = 'Postal code *'
+
+            break
+            case 'MX':
+            stateOptions = [
+            'State *', 'Aguascalientes', 'Baja California', 'Baja California Sur', 'Campeche', 'Chiapas', 'Chihuahua', 'Coahuila', 'Colima', 'Durango', 'Guanajuato', 'Guerrero', 'Hidalgo', 'Jalisco', 'Mexico', 'Michoacan', 'Morelos', 'Nayarit', 'Nuevo Leon', 'Oaxaca', 'Puebla', 'Queretaro', 'Quintana Roo', 'San Luis Potosi', 'Sinaloa', 'Sonora', 'Tabasco', 'Tamaulipas', 'Tlaxcala', 'Veracruz', 'Yucatan', 'Zacatecas'
+            ]
+
+            zipLabel.placeholder = 'Postal code *'
+
+            break
+            case 'PH':
+            stateOptions = [
+            'Region *', 'Abra', 'Agusan del Norte', 'Agusan del Sur', 'Aklan', 'Albay', 'Antique', 'Apayao', 'Aurora', 'Basilan', 'Bataan', 'Batanes', 'Batangas', 'Benguet', 'Biliran', 'Bohol', 'Bukidnon', 'Bulacan', 'Cagayan', 'Camarines Norte', 'Camarines Sur', 'Camiguin', 'Capiz', 'Catanduanes', 'Cavite', 'Cebu', 'Cotabato', 'Compostela Valley', 'Davao del Norte', 'Davao del Sur', 'Davao Occidental', 'Davao Oriental', 'Dinagat Islands', 'Eastern Samar', 'Guimaras', 'Ifugao', 'Ilocos Norte', 'Ilocos Sur', 'Iloilo', 'Isabela', 'Kalinga', 'La Union', 'Laguna', 'Lanao del Norte', 'Lanao del Sur', 'Leyte', 'Maguindanao', 'Marinduque', 'Masbate', 'Metro Manila', 'Misamis Occidental', 'Misamis Oriental', 'Mountain', 'Negros Occidental', 'Negros Oriental', 'Northern Samar', 'Nueva Ecija', 'Nueva Vizcaya', 'Occidental Mindoro', 'Oriental Mindoro', 'Palawan', 'Pampanga', 'Pangasinan', 'Quezon', 'Quirino', 'Rizal', 'Romblon', 'Samar', 'Sarangani', 'Siquijor', 'Sorsogon', 'South Cotabato', 'Southern Leyte', 'Sultan Kudarat', 'Sulu', 'Surigao del Norte', 'Surigao del Sur', 'Tarlac', 'Tawi-Tawi', 'Zambales', 'Zamboanga del Norte', 'Zamboanga del Sur', 'Zamboanga Sibugay'
+            ]
+
+            zipLabel.placeholder = 'Postcode *'
+
+            break
+            case 'NO':
+            stateOptions = [
+            'County *',  'Agder', 'Innlandet', 'More og Romsdal', 'Nordland', 'Oslo', 'Rogaland', 'Troms og Finnmark', 'Trondelag', 'Vestfold og Telemark', 'Vestland', 'Viken'
+            ]
+
+            zipLabel.placeholder = 'Postal code *'
+
+            break
+            // Add additional cases for other countries
+            default:
+            stateOptions = ['-']
+            break
+        }
+
+            // Clear the current state dropdown options
+            document.querySelector('#state').innerHTML = ''
+
+            // Add the new state options to the state dropdown
+            for (let i = 0; i <= stateOptions.length - 1; i++) {
+            const option = document.createElement('option')
+
+            if (i === 0) {
+            option.value    = ''
+            option.text     = stateOptions[0]
+            option.disabled = true
+            option.selected = true
+        } else {
+            console.log('state', stateOptions[i])
+            option.value = stateOptions[i].toLowerCase()
+            option.text  = stateOptions[i]
+        }
+
+            if (stateOptions[i] !== undefined && stateOptions[i] !== '') {
+            document.querySelector('#state').appendChild(option)
+        }
+
+        }
+        }
+
+            document.addEventListener('DOMContentLoaded', function () {
+            var countryElement = document.querySelector('#country')
+            if (countryElement) {
+            countryElement.addEventListener('change', updateStateDropdown)
+        }
+        })
+
+            function isCountryInList(countryCode) {
+            return countryCodes.includes(countryCode)
+        }
+
+            function selectCountry(countryCode) {
+            // Get the select element
+            let selectElement = document.querySelector('#country')
+
+            // Set the value
+            selectElement.value = countryCode
+
+            // Create a new 'change' event
+            var event = new Event('change', {
+            bubbles   : true,
+            cancelable: true
+        })
+
+            // Dispatch it
+            selectElement.dispatchEvent(event)
+        }
+
+
+            // Callback function to handle successful geoip2 responses
+            function handleGeoipResponse(geoipResponse) {
+            // Check if the response has a country property
+            if ('country' in geoipResponse) {
+            ipCountry = geoipResponse.country.iso_code
+
+            const urlParams = new URLSearchParams(window.location.search)
+            const utmSource = urlParams.get('utm_source')
+
+            // If the user is not in the US, redirect them to the specified URL
+            if (!isCountryInList(ipCountry) && utmSource != 'testing') {
+            window.location = 'https://14daymetabolismreset.com/digi/assessment/order'
+        } else {
+
+            if (isCountryInList(ipCountry)) {
+            // Auto select the country dropdown
+            selectCountry(ipCountry)
+            updateStateDropdown()
+        }
+
+        }
+        }
+        }
+
+            // Callback function to handle geoip2 errors
+            function handleError(err) {
+            console.error(err)
+        }
+
+            // Get the user's country using the geoip2 library
+            geoip2.country(handleGeoipResponse, handleError)
+        </script>
+    </head>
+    <body>
+
+
+
+<!--ADDED HTML FOR TOP STRIP-->
+<div class="top-strip">
+    <p class="header__stopwatch" style="font-family: Manrope; text-align: center;" >Discount is Reserved For: <span id="stopwatch">13:34</span></p>
+</div>
+<!--ADDED HTML FOR TOP STRIP-->
+
+<div class="wrapper">
+
+    <!------HEADER----->
+    <div class="header-section">
+        <div class="container">
+            <img src="image/logo.png" width="231" height="46" alt="logo" class="header__logo">
+
+                <!--<p class="header__stopwatch" style="font-family: Manrope; text-align: center;" >Discount is Reserved For: <span id="stopwatch">13:34</span></p>-->
+
+                <div class="header__contact hidden-xs">
+                    <img src="image/phone.png" width="50" height="50" alt="phone">
+                        <p><span>Need Help?</span><br>1-844-329-2473</p>
+                </div>
+        </div>
+    </div>
+
+    <!------HERO-SECTION----->
+    <div class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 text-center">
+                    <h1 class="hero-section_heading">Lose Weight, Get Toned, & Feel More<br class="hidden-xs"> Radiant In Just 14 Days</h1>
+                    <div class="hero-section_image">
+                        <img src="image/hero-image.jpg" alt="" width="877" height="682">
+                    </div>
+                    <p class="bundle-msrp">Total Bundle Value: <span>$1279</span></p>
+                    <p class="total-price">$49.97</p>
+                    <p class="free-gift">+ $121 of Free Gifts Only Today!</p>
+
+                    <h1 class="hero-section_heading hidden-sm hidden-xs text-left hero-section_heading--mt30"><em>Your Investment Today Includes...</em></h1>
+
+                    <div class="hero-section_benefits hidden-sm hidden-xs">
+                        <div class="hero-section_benefits-box">
+                            <h3>14-Days of Follow-Along Workouts</h3>
+                            <p>Marina's exact recipes and daily eating plan - kickstart your AMPK, cut bloat, and get your metabolism burning clean!</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>The Workout Plan & Video Library</h3>
+                            <p>Workout with Marina for the next fourteen days - burn crazy calories, and add smooth, lean muscle.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>Private Membership Access</h3>
+                            <p>Free online access to your 14-Day Reset program. Start your reset just minutes from now.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>The Vegan Extension</h3>
+                            <p>Substitute any of your 14-Day meals with vegan alternatives.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>Live Onboarding Call</h3>
+                            <p>A live, 1:1 call with coach Lindsay to answer your questions and set you up for success.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>12 Ways To Lose Weight Without Diet Or Exercise</h3>
+                            <p>12 simple, "autopilot" habits to lose weight, and keep it off. Pick a few, and make them an easy daily routine.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>Beautiful Skin From Within Guide</h3>
+                            <p>An evidence-based program for improving your skin complexion, texture, tightness and moisture - without topicals or treatments.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>The Foam Rolling Guide</h3>
+                            <p>Hit hidden trigger points in your fascia, and unlock full-body mobility.</p>
+                        </div>
+                        <div class="hero-section_benefits-box">
+                            <h3>The Stretching Guide</h3>
+                            <p>Reduce years of built-up soreness and discomfort, and expand your range of motion in joints and muscles.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-5">
+                    <div class="alert alert-danger error-message"><strong>Error</strong>
+                        <div class="form-error"></div>
+                    </div>
+                    <div class="hero-section__right">
+                        <div class="payment-form form-box">
+                            <div class="form-heading">
+                                <h3>Final Step</h3>
+                                <p>Enter Your Details To Complete Order</p>
+                            </div>
+
+                            <div class="form-box-inner">
+                                <div class="paypal-button_box" id="paypal-button-container" >
+                                    <span>Express Checkout</span>
+                                    <button class="paypal-button"><!--<img src="image/paypal-button.png" alt="" width="355" height="77">--></button>
+                                </div>
+                                <div class="or-text"><span>or</span></div>
+
+                                <p class="form-field_heading">Contact Information</p>
+
+                                <input type="text" name="firstName" id="" class="input-field half pull-left shipping-form__field" placeholder="First Name">
+                                    <input type="text" name="lastName" id="" class="input-field half pull-right shipping-form__field" placeholder="Last Name">
+                                        <input type="mail" name="emailAddress" id="" class="input-field shipping-form__field" placeholder="Email Address">
+                                            <input type="tel" name="phoneNumber" id="" class="input-field shipping-form__field" placeholder="Phone Number">
+
+                                                <p class="form-field_heading">Shipping Information</p>
+                                                <input type="text" name="shippingAddress1" id="shipping-address" class="input-field" placeholder="Address">
+                                                    <input type="text" name="shippingAddress2" id="unit" class="input-field" placeholder="Apartment, Suite, etc.(optional)">
+                                                        <select name="shippingCountry" id="country" class="input-field full-option-field shipping-form__field">
+                                                            <option value="" disabled="" selected="">Country*</option>
+                                                            <option value="US">United States</option>
+                                                            <option value="AU">Australia</option>
+                                                            <option value="CA">Canada</option>
+                                                            <option value="DE">Germany</option>
+                                                            <option value="ES">Spain</option>
+                                                            <option value="FR">France</option>
+                                                            <option value="IE">Ireland</option>
+                                                            <option value="MX">Mexico</option>
+                                                            <option value="NO">Norway</option>
+                                                            <option value="NZ">New Zealand</option>
+                                                            <option value="PH">Philippines</option>
+                                                            <option value="SE">Sweden</option>
+                                                            <option value="GB">United Kingdom</option>
+                                                            <option value="ZA">South Africa</option>
+                                                        </select>
+                                                        <div class="field-3">
+                                                            <input type="text" name="shippingCity" id="city" class="input-field shipping-form__field" placeholder="City">
+                                                                <input type="text" name="shippingZip" id="zip" class="input-field shipping-form__field" placeholder="ZIP code">
+                                                                    <select name="shippingState" id="state" class="input-field shipping-form__field">
+                                                                        <option value="" disabled="">State *</option>
+                                                                        <option value="alabama">Alabama</option>
+                                                                        <option value="alaska">Alaska</option>
+                                                                        <option value="arizona">Arizona</option>
+                                                                        <option value="arkansas">Arkansas</option>
+                                                                        <option value="california">California</option>
+                                                                        <option value="colorado">Colorado</option>
+                                                                        <option value="connecticut">Connecticut</option>
+                                                                        <option value="delaware">Delaware</option>
+                                                                        <option value="florida">Florida</option>
+                                                                        <option value="georgia">Georgia</option>
+                                                                        <option value="hawaii">Hawaii</option>
+                                                                        <option value="idaho">Idaho</option>
+                                                                        <option value="illinois">Illinois</option>
+                                                                        <option value="indiana">Indiana</option>
+                                                                        <option value="iowa">Iowa</option>
+                                                                        <option value="kansas">Kansas</option>
+                                                                        <option value="kentucky">Kentucky</option>
+                                                                        <option value="louisiana">Louisiana</option>
+                                                                        <option value="maine">Maine</option>
+                                                                        <option value="maryland">Maryland</option>
+                                                                        <option value="massachusetts">Massachusetts</option>
+                                                                        <option value="michigan">Michigan</option>
+                                                                        <option value="minnesota">Minnesota</option>
+                                                                        <option value="mississippi">Mississippi</option>
+                                                                        <option value="missouri">Missouri</option>
+                                                                        <option value="montana">Montana</option>
+                                                                        <option value="nebraska">Nebraska</option>
+                                                                        <option value="nevada">Nevada</option>
+                                                                        <option value="new hampshire">New Hampshire</option>
+                                                                        <option value="new jersey">New Jersey</option>
+                                                                        <option value="new mexico">New Mexico</option>
+                                                                        <option value="new york">New York</option>
+                                                                        <option value="north carolina">North Carolina</option>
+                                                                        <option value="north dakota">North Dakota</option>
+                                                                        <option value="ohio">Ohio</option>
+                                                                        <option value="oklahoma">Oklahoma</option>
+                                                                        <option value="oregon">Oregon</option>
+                                                                        <option value="pennsylvania">Pennsylvania</option>
+                                                                        <option value="rhode island">Rhode Island</option>
+                                                                        <option value="south carolina">South Carolina</option>
+                                                                        <option value="south dakota">South Dakota</option>
+                                                                        <option value="tennessee">Tennessee</option>
+                                                                        <option value="texas">Texas</option>
+                                                                        <option value="utah">Utah</option>
+                                                                        <option value="vermont">Vermont</option>
+                                                                        <option value="virginia">Virginia</option>
+                                                                        <option value="washington">Washington</option>
+                                                                        <option value="west virginia">West Virginia</option>
+                                                                        <option value="wisconsin">Wisconsin</option>
+                                                                        <option value="wyoming">Wyoming</option>
+                                                                    </select>
+                                                        </div>
+
+                                                        <p class="form-field_heading">Payment Information</p>
+
+                                                        <input type="text" name="creditCardNumber" id="card_number" class="input-field input-field--card-field" placeholder="Card Number" autocomplete="cc-number">
+                                                            <input type="hidden" name="creditCardType" id="credit-card-type">
+                                                                <div class="field-3">
+                                                                    <select name="expirationMonth" id="" class="input-field">
+                                                                        <option value="01">01</option>
+                                                                        <option value="02">02</option>
+                                                                        <option value="03">03</option>
+                                                                        <option value="04">04</option>
+                                                                        <option value="05">05</option>
+                                                                        <option value="06">06</option>
+                                                                        <option value="07">07</option>
+                                                                        <option value="08">08</option>
+                                                                        <option value="09">09</option>
+                                                                        <option value="10">10</option>
+                                                                        <option value="11">11</option>
+                                                                        <option value="12">12</option>
+                                                                    </select>
+                                                                    <select name="expirationYear" id="" class="input-field"> </select>
+
+
+                                                                    <input type="text" name="cvv" id="" class="input-field" placeholder="CVV">
+                                                                </div>
+
+                                                                <div class="secure-text"><img src="image/secure-icon.png" alt="" width="42" height="46"> <p>We protect your payment information using encryption to provide bank-level security.</p></div>
+
+                                                                <table class="item-info" cellpadding="0" cellspacing="0">
+                                                                    <tr>
+                                                                        <td><strong>Item</strong></td>
+                                                                        <td><strong>Amount</strong></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="item-describe"><span><strong>14-Day Metabolism Reset.</strong></span><br> 1-Year Money Back Guarantee.</td>
+                                                                        <td class="price"><strong>$49.97</strong></td>
+                                                                    </tr>
+                                                                </table>
+
+                                                                <button class="payment-form__next-button">Complete Order <img src="image/button-arrow.png" alt=""></button>
+                                                                <img src="image/cards.png" alt="" class="cards" width="420" height="60">
+                                                                    <img src="image/seals.jpg" alt="" class="seals" width="260" height="57">
+                            </div>
+                        </div>
+
+                        <div class="guarantee">
+                            <div class="guarantee_inner">
+                                <img src="image/guarantee-seal.png" alt="" class="guarantee-seal" width="280" height="210">
+                                    <p class="guarantee_heading">365 Days Of<br> Purchase Protection</p>
+                                    <p class="guarantee_text">"Follow all of the workouts and use the bonuses for up to 365 days. You either love the amazing results they bring you, or we'll give you a full refund no questions asked. Just email or call our 24/7 customer happiness team, and we'll get you taken care of."</p>
+                                    <div class="guarantee_line"></div>
+                                    <div class="guarantee_reviews">
+                                        <img src="image/guarantee-face.jpg" alt="" class="guarantee-face" width="92" height="92">
+                                            <img src="image/guarantee-sign.jpg" alt="" class="guarantee-sign" width="260" height="117">
+                                                <h3><em>Marina Santos</em></h3>
+                                                <p>Founder of Radiant Me</p>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <h1 class="hero-section_heading visible-sm visible-xs text-left hero-section_heading--mt30"><em>Your Investment Today Includes...</em></h1>
+
+                        <div class="hero-section_benefits visible-sm visible-xs">
+                            <div class="hero-section_benefits-box">
+                                <h3>14-Days of Follow-Along Workouts</h3>
+                                <p>Marina's exact recipes and daily eating plan - kickstart your AMPK, cut bloat, and get your metabolism burning clean!</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>The Workout Plan & Video Library</h3>
+                                <p>Workout with Marina for the next fourteen days - burn crazy calories, and add smooth, lean muscle.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>Private Membership Access</h3>
+                                <p>Free online access to your 14-Day Reset program. Start your reset just minutes from now.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>The Vegan Extension</h3>
+                                <p>Substitute any of your 14-Day meals with vegan alternatives.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>Live Onboarding Call</h3>
+                                <p>A live, 1:1 call with coach Lindsay to answer your questions and set you up for success.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>12 Ways To Lose Weight Without Diet Or Exercise</h3>
+                                <p>12 simple, "autopilot" habits to lose weight, and keep it off. Pick a few, and make them an easy daily routine.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>Beautiful Skin From Within Guide</h3>
+                                <p>An evidence-based program for improving your skin complexion, texture, tightness and moisture - without topicals or treatments.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>The Foam Rolling Guide</h3>
+                                <p>Hit hidden trigger points in your fascia, and unlock full-body mobility.</p>
+                            </div>
+                            <div class="hero-section_benefits-box">
+                                <h3>The Stretching Guide</h3>
+                                <p>Reduce years of built-up soreness and discomfort, and expand your range of motion in joints and muscles.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------TESTIMONIALS----->
+    <div class="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="common-heading">Customer Testimonials</p>
+                    <div class="testimonials__inner">
+                        <div class="testimonials__box">
+                            <p class="testimonials__heading">I was buzzing with energy...</p>
+                            <img src="image/testimonial-star.png" alt="" class="testimonial__star" width="220" height="37">
+                                <p class="testimonials__text">"Let me tell you, I was back and forth for ages about giving The 14-Day Reset a try. Between juggling the kiddos and work, I thought, 'There's no way, right?' But girl, I finally went for it and, wow! Am I over the moon that I did! As soon as I started, all that second-guessing just melted away. In no time, I was buzzing with energy and could literally see my body changing. Hands down, it's one of the smartest moves I've made for me. Big hugs and thanks to Marina!"</p>
+                                <div class="testimonials__user">
+                                    <div class="testimonial-letter">A</div>
+                                    <p class="testimonial-name">Angela E.</p>
+                                    <p class="verify-text"><img src="image/verify-icon.png" alt="" width="30" height="36"> Verified Buyer</p>
+                                </div>
+                        </div>
+
+                        <div class="testimonials__box">
+                            <p class="testimonials__heading">Totally made my day!</p>
+                            <img src="image/testimonial-star.png" alt="" class="testimonial__star" width="220" height="37">
+                                <p class="testimonials__text">"Oh my goodness, I had a tiny hiccup with my order, and Marina's team were just angels about it! They jumped right in to fix it super fast, on the same day! I was so touched by how much they cared about making things right for me. It's not every day you find a product that's amazing AND backed by the sweetest support team. Totally made my day!"</p>
+                                <div class="testimonials__user">
+                                    <div class="testimonial-letter">S</div>
+                                    <p class="testimonial-name">Sarah J.</p>
+                                    <p class="verify-text"><img src="image/verify-icon.png" alt="" width="30" height="36"> Verified Buyer</p>
+                                </div>
+                        </div>
+
+                        <div class="testimonials__box">
+                            <p class="testimonials__heading">The 14-Day Metabolism Reset was a game-changer!...</p>
+                            <img src="image/testimonial-star.png" alt="" class="testimonial__star" width="220" height="37">
+                                <p class="testimonials__text">"I'm 43 and hadn't exercised in over 3 whole years. I felt terrible about it. But the thought of getting back into it? Terrifying. But The 14-Day Metabolism Reset was a game-changer! I lost over 9 lbs already and I ENJOY moving my body now! This program was so fun and easy to follow. An active lifestyle has never been so fun before, and it's all thanks to this little miracle. Radiant Me, you rock!"</p>
+                                <div class="testimonials__user">
+                                    <div class="testimonial-letter">T</div>
+                                    <p class="testimonial-name">Tanya A.</p>
+                                    <p class="verify-text"><img src="image/verify-icon.png" alt="" width="30" height="36"> Verified Buyer</p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------FOOTER----->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="footer-text">&copy; <script type="text/javascript">var year = new Date();document.write(year.getFullYear());</script> Marina Santos Fit | 1603 Capitol Ave. | Suite 310 A401 Cheyenne, Wyoming 82001</p>
+                    <p class="footer-text"><a href="#contact-us" data-toggle="modal" data-target="#contact-us">Contact</a> | <a href="#privacy-policy" data-toggle="modal" data-target="#privacy-policy">Privacy Policy</a> | <a href="#terms-conditions-2"data-toggle="modal" data-target="#terms-conditions-2">Terms</a> | <a href="#disclaimer" data-toggle="modal" data-target="#disclaimer">Disclaimer</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bookmarkscroll.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+
+    $('.scroll-btn').click(function(){
+        $("html").animate({ scrollTop: 0 }, "slow");
+    });
+
+});
+
+
+    var spd = 100;
+    var spdVal = 10;
+    var cntDown = 15 * 60 * spdVal;
+    setInterval(function () {
+    var mn, sc, ms;
+    cntDown--;
+    if(cntDown < 0) {
+    return false;
+}
+    mn = Math.floor((cntDown / spdVal) / 60 );
+    mn = (mn < 10 ? '0' + mn : mn);
+    sc = Math.floor((cntDown / spdVal) % 60);
+    sc = (sc < 10 ? '0' + sc : sc);
+    ms = Math.floor(cntDown % spdVal);
+    ms = (ms < 10 ? '0' + ms : ms);
+    var result = mn + ':' + sc;
+    document.getElementById('stopwatch').innerHTML = result;
+}, spd);
+
+</script>-->
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+    </body>
+</html>
