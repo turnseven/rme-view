@@ -11,4 +11,4 @@ We have decoupled the CSS, and JS from the markup. Within each directory you wil
 
 - Bootstrap [v3.3.7] (Grid, Responsive Utilities)
 - Normalize.css [v3.0.3]
-- jQuery [v3.2.1]
+- jQuery [v3.7.1]
